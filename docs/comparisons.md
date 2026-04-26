@@ -5,7 +5,7 @@ IronClaw sits between [OpenClaw](https://github.com/nicholasgriffintn/OpenClaw) 
 | Dimension | OpenClaw | NanoClaw | NemoClaw | IronClaw |
 |---|---|---|---|---|
 | **Philosophy** | Full-featured agent OS for power users | Minimal, understandable, fork-and-customize | Lightweight, single-file simplicity | Lean but extensible, security-first, AI-native management |
-| **Codebase size** | ~500K lines, 70+ dependencies | ~2K lines, handful of files | ~500 lines, single entry point | ~6K lines, three packages + web app |
+| **Codebase size** | ~434K LOC, 3,680 files, 70+ deps | ~4K LOC, 15 files | ~500 LOC, single entry point | ~13K LOC, 162 files (across 4 packages) |
 | **Understandability** | Days to comprehend | 8 minutes to read | 5 minutes to read | A couple of hours — SDK handles most complexity |
 | **Process model** | Single monolithic Node.js process | Single Node.js process | Single Node.js process | Separate Gateway + Runtime via NATS |
 | **Database** | JSON files + SQLite | SQLite | In-memory / flat files | PostgreSQL + pgvector |

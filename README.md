@@ -268,6 +268,7 @@ Found a security issue? Please email me instead of filing a public issue — see
 | | OpenClaw | NanoClaw | IronClaw |
 |---|---|---|---|
 | **Philosophy** | Full-featured agent OS | Minimal fork-and-customize | Lean but extensible, security-first |
+| **Codebase** | ~434K LOC, 3,680 files | ~4K LOC, 15 files | ~13K LOC, 162 files |
 | **Agent runtime** | Pi Agent Core (custom RPC) | Claude Agent SDK | Claude Agent SDK |
 | **Database** | SQLite + JSON | SQLite | PostgreSQL + pgvector |
 | **Approval queue** | No (auto-executes) | No (container-sandboxed) | Yes — per-tool, per-trust-level |
