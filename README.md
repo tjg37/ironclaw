@@ -179,18 +179,16 @@ Once running, the agent has its own management tools. Just ask in any channel:
 ## Architecture
 
 ```
-┌────────────┐      ┌──────────┐      ┌──────┐      ┌─────────┐      ┌──────────┐
-│ Telegram   │────▶│ Gateway  │────▶│ NATS │────▶│ Runtime │────▶│ Postgres │
-│ Web / CLI  │      │ (WS/HTTP)│      │      │      │ (SDK)   │      │ (pgvector)│
-└────────────┘      └──────────┘      └──────┘      └─────────┘      └──────────┘
-                           │                              │
-                           │                              └── MCP servers (github,
-                           │                                  sentry, memory, …)
-                           ▼
-                    ┌──────────────┐
-                    │ Web UI       │
-                    │ (Next.js 15) │
-                    └──────────────┘
+┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐
+│  Telegram  │───▶│  Gateway   │───▶│    NATS    │───▶│  Runtime   │───▶│  Postgres  │
+│ Web / CLI  │    │ (WS/HTTP)  │    │            │    │   (SDK)    │    │ (pgvector) │
+└────────────┘    └─────┬──────┘    └────────────┘    └─────┬──────┘    └────────────┘
+                        │                                   │
+                        ▼                                   ▼
+                  ┌────────────┐                      MCP servers
+                  │   Web UI   │                      (github, sentry,
+                  │(Next.js 15)│                       memory, …)
+                  └────────────┘
 ```
 
 Key architectural decisions are documented in [docs/decisions/](./docs/decisions/).
