@@ -1,0 +1,26 @@
+{
+  "name": "@ironclaw/gateway",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "start": "node --disable-warning=DEP0040 --env-file=../../.env --import tsx/esm src/server.ts"
+  },
+  "dependencies": {
+    "@ironclaw/shared": "workspace:*",
+    "grammy": "^1.41.1",
+    "nats": "^2.29.3",
+    "node-cron": "^4.2.1",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.11",
+    "@types/ws": "^8.18.1",
+    "@vitest/coverage-v8": "^4.1.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.0"
+  }
+}

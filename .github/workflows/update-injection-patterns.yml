@@ -1,0 +1,67 @@
+name: Update injection patterns
+
+on:
+  schedule:
+    # Every Monday at 09:00 UTC
+    - cron: "0 9 * * 1"
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-patterns:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Fetch new patterns
+        id: fetch
+        run: pnpm run update-injection-patterns
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet packages/runtime/src/context/injection-patterns.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: auto/update-injection-patterns
+          delete-branch: true
+          title: "Update prompt injection patterns"
+          body: |
+            ## Summary
+
+            Automated weekly update of prompt injection patterns from public threat feeds.
+
+            **Sources:**
+            - deepset-ai/prompt-injections (HuggingFace)
+            - Garak injection probes (NVIDIA/GitHub)
+            - Known jailbreak prefixes (curated)
+
+            ${{ steps.fetch.outputs.summary || 'New patterns added.' }}
+
+            Please review the new patterns before merging — false positives
+            (patterns that match legitimate user messages) should be removed.
+
+            ---
+            *This PR was created automatically by the `update-injection-patterns` workflow.*
+          commit-message: "Update prompt injection patterns from threat feeds"
+          labels: security,automated

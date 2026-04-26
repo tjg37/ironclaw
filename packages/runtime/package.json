@@ -1,0 +1,28 @@
+{
+  "name": "@ironclaw/runtime",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/worker.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node --disable-warning=DEP0040 --env-file=../../.env --import tsx/esm src/cli.ts",
+    "worker": "node --disable-warning=DEP0040 --env-file=../../.env --import tsx/esm src/worker.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.2.80",
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@ironclaw/shared": "workspace:*",
+    "drizzle-orm": "^0.39.0",
+    "nats": "^2.29.3",
+    "node-cron": "^4.2.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.11",
+    "@vitest/coverage-v8": "^4.1.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.0"
+  }
+}

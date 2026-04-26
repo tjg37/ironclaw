@@ -1,0 +1,17 @@
+FROM node:22-slim
+
+# Install Claude Code CLI
+# Pin version for reproducible builds (see docs/decisions/001-claude-agent-sdk-migration.md)
+RUN npm install -g @anthropic-ai/claude-code@0.2.80
+
+# Create non-root user for sandbox execution
+RUN groupadd -r ironclaw && useradd -r -g ironclaw -u 1000 -m ironclaw
+
+# Set working directory
+WORKDIR /workspace
+
+# Switch to non-root user
+USER ironclaw
+
+# Verify installation
+RUN claude --version || echo "Claude Code CLI installed"

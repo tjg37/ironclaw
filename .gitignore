@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.next/
+.env
+.env.local
+*.tsbuildinfo
+next-env.d.ts
+firebase-debug.log
+coverage/
+.DS_Store
+
+# Private planning docs — not part of the OSS release
+project-plan.md
+ironclaw-private/
+
+# Hero recordings — keep PNGs, exclude raw GIFs (often huge)
+docs/screenshots/*.gif

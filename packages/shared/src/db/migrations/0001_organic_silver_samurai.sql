@@ -1,0 +1,1 @@
+ALTER TABLE "memory_entries" ALTER COLUMN "embedding" SET DATA TYPE vector(512);
